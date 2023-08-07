@@ -9,7 +9,6 @@ with tab_ads:
     if st.button('Проверить', key='running_text_check') and text != '':
         st.write(count_characters(text))
         st.write(symbol_search(text))
-        st.write(emoji_quantity(text))
         st.write(emoji_search(text))
         st.write(imperative_check(text))
         st.write(superlative_check(text))
