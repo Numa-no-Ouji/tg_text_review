@@ -1,4 +1,3 @@
-from advertools import extract_emoji
 from nltk import tokenize
 import pymorphy2
 
@@ -20,21 +19,6 @@ def symbol_search(text):
         return (f'В тексте есть запрещенные символы: {n_list[0].rstrip(" ,")} .')
     else:
         return ('Запрещенных символов в тексте нет.')
-
-def emoji_quantity(text):
-    emoji_summary = extract_emoji(text).get('emoji')
-    e_count = 0
-    for emoji in emoji_summary:
-        if emoji != []:
-            e_count += 1
-        else:
-            pass
-    if e_count > 1:
-        return 'Количество эмодзи в тексте превышает рекомендованное: 1 .'
-    elif e_count == 1:
-        return 'Количество эмодзи в тексте не ревышает рекомендованного: 1 , но больше эмодзи не добавить.'
-    else:
-        return f'В текст можно добавить еще {1 - e_count} эмодзи.'
     
 def emoji_search(text):
     emoji_list = ['\U0001F449', '\U0001F448', '\U0001F446', '\U0001F447', 
