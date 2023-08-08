@@ -228,7 +228,7 @@ def main():
         st.write('Для начала убедитесь, что ваш канал - публичный.')
         text = st.text_input('Укажите ссылку на ваш Telegram-канал ниже:', value='', key='channel_link', type='default', placeholder=None, help='Введите ссылку на Telegram-канал в формате https://t.me/eLama_russia')
         if st.button('Проверить', key='running_channel_check') and text != '':
-            st.write('Пук-среньк')
+            st.write('Этот функционал скоро будет')
 
 if __name__ == '__main__':
     main()
