@@ -153,12 +153,18 @@ def superlative_check(text):
             str(morph.parse(all_words_list[all_words_list.index(position['word']) - 1])[0].tag).split(',').index('Prnt')
             continue
         except ValueError:
-            try:
-                str(morph.parse(all_words_list[all_words_list.index(position['word']) - 2])[0].tag).split(',').index('Prnt')
-                continue
-            except ValueError:
-                list_of_superlative_words = list_of_superlative_words + position['word'].lower() + ','
-                continue      
+            if len(all_words_list) > 1:
+                try:
+                    str(morph.parse(all_words_list[all_words_list.index(position['word']) - 2])[0].tag).split(',').index('Prnt')
+                    continue
+                except ValueError:
+                    list_of_superlative_words = list_of_superlative_words + position['word'].lower() + ','
+                    continue
+            else:
+                try:
+                    list_of_superlative_words = list_of_superlative_words + position['word'].lower() + ','
+                except ValueError:
+                    continue    
     result_str = []
     for word in list_of_superlative_words.split(','):
         try:
