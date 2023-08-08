@@ -185,22 +185,31 @@ def comparative_check(text):
     for word in split_text(text):
         all_words_list.append(word.lower())
         try:
-            str(morph.parse(word)[0].tag).split(',').index('COMP') 
-            tag = str(morph.parse(word)[0].tag)
-            dict_comp.append({'word': word, 'tag': tag})
+            str(morph.parse(word)[0].tag).split(',').index('COMP')
+            if word.lower().find('подробн') != -1:
+                continue
+            else:  
+                tag = str(morph.parse(word)[0].tag)
+                dict_comp.append({'word': word, 'tag': tag})
         except ValueError:
             continue
     for position in dict_comp:
-        try:
-            str(morph.parse(all_words_list[all_words_list.index(position['word']) - 1])[0].tag).split(',').index('Prnt')
-            continue
-        except ValueError:
             try:
-                str(morph.parse(all_words_list[all_words_list.index(position['word']) - 2])[0].tag).split(',').index('Prnt')
+                str(morph.parse(all_words_list[all_words_list.index(position['word']) - 1])[0].tag).split(',').index('Prnt')
                 continue
             except ValueError:
-                list_of_comparative_words = list_of_comparative_words + position['word'].lower() + ','
-                continue      
+                if len(all_words_list) > 1:
+                    try:
+                        str(morph.parse(all_words_list[all_words_list.index(position['word']) - 2])[0].tag).split(',').index('Prnt')
+                        continue
+                    except ValueError:
+                        list_of_comparative_words = list_of_comparative_words + position['word'].lower() + ','
+                        continue
+                else:
+                    try:
+                        list_of_comparative_words = list_of_comparative_words + position['word'].lower() + ',' 
+                    except ValueError:
+                        continue      
     result_str = []
     for word in list_of_comparative_words.split(','):
         try:
