@@ -6,7 +6,7 @@ import pymorphy2
 morph = pymorphy2.MorphAnalyzer()
 
 def count_characters(str):
-    return f'Осталось еще {160 - len(str)} символов' if len(str) <= 160 else f'Текст слишком длинный. Удалите {len(str) - 160} символов'
+    return f'✅ Осталось еще {160 - len(str)} символов' if len(str) <= 160 else f'❌ Текст слишком длинный. Удалите {len(str) - 160} символов'
 
 def symbol_search(text):
     sym_list = ['/', '|', '_', '\\']
@@ -18,9 +18,9 @@ def symbol_search(text):
         else:
             continue
     if n_list != ['']:
-        return (f'В тексте есть запрещенные символы: {n_list[0].rstrip(" ,")} .')
+        return (f'❌ В тексте есть запрещенные символы: {n_list[0].rstrip(" ,")} .')
     else:
-        return ('Запрещенных символов в тексте нет.')
+        return ('✅ Запрещенных символов в тексте нет.')
 
 def emoji_quantity(text):
     emoji_summary = extract_emoji(text).get('emoji')
@@ -33,9 +33,9 @@ def emoji_quantity(text):
     if e_count > 1:
         return 'Количество эмодзи в тексте превышает рекомендованное: 1 .'
     elif e_count == 1:
-        return 'Количество эмодзи в тексте не ревышает рекомендованного: 1 , но больше эмодзи не добавить.'
+        return '❌ Количество эмодзи в тексте не ревышает рекомендованного: 1 , но больше эмодзи не добавить.'
     else:
-        return f'В текст можно добавить еще {1 - e_count} эмодзи.'
+        return f'✅ В текст можно добавить еще {1 - e_count} эмодзи.'
     
 def emoji_search(text):
     emoji_list = ['\U0001F449', '\U0001F448', '\U0001F446', '\U0001F447', 
@@ -50,9 +50,9 @@ def emoji_search(text):
         else:
             continue
     if n_list != ['']:
-        return (f'В тексте есть запрещенные эмодзи: {n_list[0].rstrip(" ,")} .')
+        return (f'❌ В тексте есть запрещенные эмодзи: {n_list[0].rstrip(" ,")} .')
     else:
-        return ('Запрещенных эмодзи в тексте нет.')
+        return ('✅ Запрещенных эмодзи в тексте нет.')
     
 def split_text(str):
     fn = tokenize.WordPunctTokenizer()
@@ -75,9 +75,9 @@ def second_person_check(text):
             result_str.append(word)
     result_str = ', '.join(result_str).rstrip(', ')
     if result_str != '':
-        return (f'В тексте есть обращение на «ты»: {result_str}.')
+        return (f'❌ В тексте есть обращение на «ты»: {result_str}.')
     else:
-        return ('Обращения на «ты» в тексте нет.')
+        return ('✅ Обращения на «ты» в тексте нет.')
 
 def imperative_check(text):
     all_words_list = []
@@ -132,9 +132,9 @@ def imperative_check(text):
             result_str.append(word)
     result_str = ', '.join(result_str).rstrip(', ')
     if result_str != '':
-        return (f'В тексте есть повелительное наклонение: {result_str}.')
+        return (f'❌ В тексте есть повелительное наклонение: {result_str}.')
     else:
-        return ('Повелительного наклонения в тексте нет.')
+        return ('✅ Повелительного наклонения в тексте нет.')
 
 def superlative_check(text):
     all_words_list = []
@@ -168,9 +168,9 @@ def superlative_check(text):
             result_str.append(word)
     result_str = ', '.join(result_str).rstrip(', ')
     if result_str != '':
-        return (f'В тексте есть абсолютные превосходные формы: {result_str}.')
+        return (f'❌ В тексте есть абсолютные превосходные формы: {result_str}.')
     else:
-        return ('Абсолютных превосходных форм в тексте нет.')
+        return ('✅ Абсолютных превосходных форм в тексте нет.')
     
 def comparative_check(text):
     all_words_list = []
@@ -204,9 +204,9 @@ def comparative_check(text):
             result_str.append(word)
     result_str = ', '.join(result_str).rstrip(', ')
     if result_str != '':
-        return (f'В тексте есть абсолютные сравнительные формы: {result_str}.')
+        return (f'❌ В тексте есть абсолютные сравнительные формы: {result_str}.')
     else:
-        return ('Абсолютных сравнительных форм в тексте нет.')
+        return ('✅ Абсолютных сравнительных форм в тексте нет.')
 
 def main():    
     st.title('Проверка текста для Telegram Ads', anchor='top')
