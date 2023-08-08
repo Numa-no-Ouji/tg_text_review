@@ -213,7 +213,7 @@ def main():
     tab_ads, tab_channel_posts = st.tabs(['Проверка текста объявления Telegram Ads','Проверка постов из канала Telegram Ads'])
         
     with tab_ads:
-        text = st.text_input('Укажите текст вашего объявления ниже:', value='', max_chars=5000, key='ad_text', type='default', placeholder=None, help='Введите текст объявления. Допустимая длина текста - не более 160 символов с пробелами.')
+        text = st.text_input('Укажите текст вашего объявления ниже:', value='', max_chars=160, key='ad_text', type='default', placeholder=None, help='Введите текст объявления. Допустимая длина текста - не более 160 символов с пробелами.')
         if st.button('Проверить', key='running_text_check') and text != '':
             st.write(count_characters(text))
             st.write(symbol_search(text))
